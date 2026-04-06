@@ -4,8 +4,13 @@
 # npm install @slidev/cli@0.49.29
 # npx @slidev/cli --version     52.14.2
 
+# git add .
+# git commit -m "fix permission 
+# git push origin main
+
+
 # http://localhost:3030/
 
 Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
-Start-Sleep -Seconds 2
+Start-Sleep -Seconds 1
 npx slidev --port 3030 --open
