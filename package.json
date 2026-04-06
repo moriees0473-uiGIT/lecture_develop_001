@@ -2,6 +2,10 @@
   "name": "lecture_math_001",
   "type": "module",
   "private": true,
+
+  "engines": {
+    "node": ">=20.0.0 <22.0.0"
+  },
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --port 3030 --open",
