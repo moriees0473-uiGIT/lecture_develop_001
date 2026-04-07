@@ -1,0 +1,12 @@
+/* style.css 等 */
+:root {
+  --app-bg-start: #ecfeff;
+  --app-bg-middle: #f8fafc;
+  --app-bg-end: #e2e8f0;
+  --app-accent: #06b6d4;
+  --app-title-color: #164e63;
+  --app-text-main: #1f2937;
+  --app-text-sub: #64748b;
+  --app-radius: 24px;
+  --app-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}

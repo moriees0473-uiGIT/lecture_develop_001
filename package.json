@@ -2,7 +2,6 @@
   "name": "lecture_math_001",
   "type": "module",
   "private": true,
-
   "engines": {
     "node": ">=20.0.0 <22.0.0"
   },
@@ -14,7 +13,7 @@
   "dependencies": {
     "@slidev/cli": "^52.14.2",
     "@slidev/theme-default": "latest",
-    "@slidev/theme-seriph": "latest",
+    "@slidev/theme-seriph": "^0.25.0",
     "vue": "^3.5.29"
   }
 }
