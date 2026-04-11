@@ -16,4 +16,5 @@ Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
 # npx slidev --port 3030 --open
 # npx @slidev/cli --port 3030
 
+#VS CODE RUN
 npx slidev
