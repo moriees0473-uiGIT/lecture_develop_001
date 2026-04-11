@@ -27,10 +27,9 @@ canvasWidth: 1100
 ---
 theme: default
 layout: none
-background: 'linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%)'
 ---
 
-<div class="w-full" style="min-height: 100vh; background: linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%);">
+<div class="w-full" style="min-height: 100vh; background: linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%);"><TwoColumnStep number="01" title="未来を創るシステム開発">
 <TwoColumnStep number="01" title="未来を創るシステム開発">
   <template v-slot:title>
     <JinanStep kind="title" style="margin: 0;" title="未来を創るシステム開発" />
@@ -74,7 +73,6 @@ background: 'linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%)'
 theme: default
 layout: none
 class: text-center
-background: 'linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%)'
 canvasWidth: 1100
 ---
 
