@@ -76,7 +76,7 @@ canvasWidth: 1100
   <JinanStep kind="body" read-aloud title="この時間は、基礎を固めながら順番に理解を積み上げていきます。" />
   <JinanStep kind="subtitle" title="**{学校|がっこう}**の**{準備|じゅんび}**" />
 
-  <JinanStep v-click kind="body" highlight read-aloud title="1. 公式の意味を言葉で説明できるようにする" />
+  <JinanStep v-click kind="body" highlight read-aloud title="0. 公式の意味を言葉で説明できるようにする" />
   <JinanStep v-click kind="body" highlight read-aloud title="2. 例題で考え方の手順を確認する" />
   <JinanStep v-click kind="body" highlight read-aloud title="3. 練習問題で自力で解く力をつける" />
   <JinanStep v-click kind="body" highlight read-aloud title="4. 間違いを見直して次に活かす" />
