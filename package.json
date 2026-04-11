@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "slidev build",
+    "build:render": "npm install --no-save @oxc-parser/binding-linux-x64-gnu@0.124.0 && slidev build",
     "dev": "slidev --port 3030 --open",
     "export": "slidev export"
   },
