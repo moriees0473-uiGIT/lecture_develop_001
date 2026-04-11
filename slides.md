@@ -26,14 +26,18 @@ canvasWidth: 1100
 
 ---
 theme: default
-layout: default
-background: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)'
+layout: none
+background: 'linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%)'
 ---
 
+<div class="w-full" style="min-height: 100vh; background: linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%);">
 <TwoColumnStep number="01" title="未来を創るシステム開発">
+  <template v-slot:title>
+    <JinanStep kind="title" style="margin: 0;" title="未来を創るシステム開発" />
+  </template>
   
   <template v-slot:description>
-    ワクワクする新しい価値を届けるための、3つのステップを確認しましょう。
+    <JinanStep kind="body" style="margin: 0;" title="ワクワクする新しい価値を届けるための、3つのステップを確認しましょう。" />
   </template>
 
   <template v-slot:left>
@@ -64,14 +68,18 @@ background: 'linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%)'
   </template>
 
 </TwoColumnStep>
+</div>
 
 ---
-theme: seriph
+theme: default
+layout: none
 class: text-center
+background: 'linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%)'
 canvasWidth: 1100
 ---
 
-<JinanStepFrame variant="beige">
+<div class="w-full" style="min-height: 100vh; background: linear-gradient(145deg, #d9c9b2 0%, #bda78d 45%, #a78c6f 100%);">
+<JinanStepFrame variant="point-bg">
   <JinanStep kind="title" title="**学習の進め方**" />
   <JinanStep kind="body" read-aloud title="この時間は、基礎を固めながら順番に理解を積み上げていきます。" />
   <JinanStep kind="subtitle" title="**{学校|がっこう}**の**{準備|じゅんび}**" />
@@ -81,3 +89,4 @@ canvasWidth: 1100
   <JinanStep v-click kind="body" highlight read-aloud title="3. 練習問題で自力で解く力をつける" />
   <JinanStep v-click kind="body" highlight read-aloud title="4. 間違いを見直して次に活かす" />
 </JinanStepFrame>
+</div>
