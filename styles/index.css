@@ -1,4 +1,10 @@
 /* style.css 等 */
+
+/* Slidev外枠の背景を黒に固定（ローカル/Render共通） */
+html, body, #app {
+  background-color: #000 !important;
+}
+
 :root {
   --app-bg-start: #d9c9b2;
   --app-bg-middle: #bda78d;
