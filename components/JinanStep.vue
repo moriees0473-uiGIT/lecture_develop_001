@@ -13,7 +13,15 @@ const props = withDefaults(defineProps<{
 })
 
 const displayText = computed(() => {
-  return (props.title?.trim() || props.speechText?.trim() || '')
+  if ((props.title ?? '').trim()) {
+    return props.title || ''
+  }
+
+  if ((props.speechText ?? '').trim()) {
+    return props.speechText || ''
+  }
+
+  return ''
 })
 
 const getVoicesReady = async () => {
@@ -75,7 +83,7 @@ const format = (text: string) => {
     .replace(/'/g, '&#39;')
 
   return escaped
-    .replace(/\n/g, '<br/>')
+    .replace(/\\n|\r\n|\r|\n/g, '<br/>')
     .replace(/\[red\](.+?)\[\/red\]/g, '<span class="step-red">$1</span>')
     .replace(/\[green\](.+?)\[\/green\]/g, '<span class="step-green">$1</span>')
     .replace(/\[(?:orange|orenge)\](.+?)\[\/(?:orange|orenge)\]/g, '<span class="step-orange">$1</span>')
@@ -101,9 +109,17 @@ const handleInlineClick = (e: MouseEvent) => {
 </script>
 
 <template>
-  <div :class="['jinan-step-container', { 'jinan-step-container--highlight': props.highlight }]">
+  <div
+    :class="['jinan-step-container', { 'jinan-step-container--highlight': props.highlight, 'jinan-step-container--body': props.kind === 'body' }]"
+    :style="props.kind === 'body' ? { textAlign: 'left', display: 'block', width: '100%' } : {}"
+  >
     <div class="jinan-step-row">
-      <div :class="['step-title', `step-title--${props.kind}`]" v-html="format(displayText)" @click="handleInlineClick"></div>
+      <div
+        :class="['step-title', `step-title--${props.kind}`]"
+        :style="props.kind === 'body' ? { textAlign: 'left', display: 'block', width: '100%' } : {}"
+        v-html="format(displayText)"
+        @click="handleInlineClick"
+      ></div>
     </div>
   </div>
 </template>
@@ -119,6 +135,11 @@ const handleInlineClick = (e: MouseEvent) => {
   padding: 12px 16px;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.56);
+}
+
+.jinan-step-container--body {
+  width: 100%;
+  text-align: left;
 }
 
 .jinan-step-row {
@@ -142,6 +163,7 @@ const handleInlineClick = (e: MouseEvent) => {
   font-size: var(--app-font-size-subtitle, 2rem);
   font-weight: 900;
   color: var(--app-text-main, #3f3326);
+  margin-top: 0.5em;
 }
 
 .step-title--body {
@@ -149,6 +171,10 @@ const handleInlineClick = (e: MouseEvent) => {
   font-weight: 700;
   line-height: 1.45;
   color: var(--app-text-sub, #6f5c45);
+  margin-left: 1em;
+  display: block;
+  width: 100%;
+  text-align: left;
 }
 
 :deep(.step-red) {
@@ -171,6 +197,12 @@ const handleInlineClick = (e: MouseEvent) => {
   border-radius: 0.3em;
   padding: 0.02em 0.3em;
   color: #5b4630;
+}
+
+:deep(.step-inline-speech) {
+  display: block;
+  text-align: left;
+  width: 100%;
 }
 
 /* ルビの調整 */

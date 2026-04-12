@@ -9,6 +9,13 @@ To start the slide show:
 Edit the [slides.md](./slides.md) to see the changes.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
+
+## PDF export memo (for保存用)
+
+- 初回のみ必要: `npm i -D playwright-chromium`
+- PDF出力コマンド: `npx slidev export --with-clicks`
+- 補足: PDF出力のために `slides.md` を毎回編集する必要はありません。
+
 ###
 1. テクノロジ系：基礎理論とアルゴリズム
 ITの仕組みやプログラミングの基礎的な考え方を問う分野で、2次式の知識が顔を出します。

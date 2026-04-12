@@ -19,9 +19,8 @@ canvasWidth: 1100
   subtitle='本日のテーマ'
   :points="[
     { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** : [en]Software Life Cycle Process[/en])' },
-    { title: '2. ソフトウェア開発手法', desc: '([en]Software Development Methodology[/en])' },
-    { title: '3. プロジェクト マネージメント', desc: '([en]Project Management[/en])' },
-    { title: '4. システム監査', desc: '([en]IT Audit[/en])' }
+    { title: '2. 小テスト' },
+    { title: '3. {総括|そうかつ}' }
   ]"
 />
 
@@ -41,14 +40,14 @@ const slcpSteps = [
     left: '情報システム全体の[orange]{構想|こうそう}や計画[/orange]を{策定|さくてい}するプロセスです。',
     right_sections: [
       {
-        rights_title: '＜システム化構想＞',
+        rights_title: '＜システム化構想（利用者）＞',
         rights: [
           '・経営上のニーズや課題を確認する。',
           '・業務と情報システムの[orange]将来像を明確[/orange]にした上で,[orange]全体{最適化|さいてきか}[/orange]を図る。'
         ]
       },
       {
-        rights_title: '＜システム化計画＞',
+        rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ））＞',
         rights: [
           '・システム化の基本方針を策定する。',
           '・管理体制や開発スケジュール,概算コスト,[orange]費用対効果[/orange]([hl]ROI[/hl] : [en]Return on Investment[/en])などを検討する。'
@@ -62,21 +61,21 @@ const slcpSteps = [
     left: '情報システムの[orange]機能や性能[/orange]を明確にするプロセスです。',
     right_sections: [
       {
-        rights_title: '＜業務要件定義＞',
+        rights_title: '＜業務要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
-          '・日々の業務に必要な要件。業務手順,関係する組織の責任や権限などを明確にする。'
+          '・日々の業務に必要な要件。業務手順,関係する[orange]組織の責任や権限[/orange]などを明確にする。'
         ]
       },
       {
-        rights_title: '＜機能要件定義＞',
+        rights_title: '＜機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
           '・システムに必要な機能。必要なデータ項目,処理内容,ユーザインタ要件フェースなどを明確にする。'
         ]
       },
       {
-        rights_title: '＜非機能要件定義＞',
+        rights_title: '＜非機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
-          '・システムに必要な目に見えない性能。応答時間,稼働時間,セキュリティなどを明確にする。'
+          '・システムに必要な[orange]目に見えない性能[/orange]。応答時間,稼働時間,セキュリティなどを明確にする。'
         ]
       }
     ],
@@ -84,20 +83,57 @@ const slcpSteps = [
   },
   {
     id: 3, title: '3.開発', color: '#D2B48C', textColor: '#302316',
-    left: '**設計・実装**\n設計書をもとにプログラムを作成する',
-    right_sections: [{ rights_title: '＜成果物＞', rights: ['設計書・ソースコード'] }],
+    left: '開発者が利用者の要件を取り入れながら,実際にシステムを開発するプロセスです。',
+    right_sections: [
+      {
+        rights_title: '＜開発工程順序（ﾍﾞﾝﾀﾞｰと利用者）＞',
+        rights: [
+          '[hl][orange]ソフトウェアの品質特性[/orange]（機能、使用、信頼、効率、保守、移植）[/hl]に基づき下記工程を進める',
+          '1)ｼｽﾃﾑ要件定義：ｼｽﾃﾑ要件定義書の作成',
+          '2)ｿﾌﾄｳｪｱ要件定義：ｿﾌﾄｳｪｱ要件定義書の作成',
+          '3)ｼｽﾃﾑ設計：ｼｽﾃﾑ設計書の作成',
+          '4)ｿﾌﾄｳｪｱ設計：ｿﾌﾄｳｪｱ設計書の作成',
+          '5)ｿﾌﾄｳｪｱ構築：ﾌﾟﾛｸﾞﾗﾑなどの作成'
+        ]
+      }
+    ],    
     image: '/images/2_process03_1.png'
   },
   {
     id: 4, title: '4.運用', color: '#A0845C',
-    left: '**本番環境での稼働**\nシステムをリリースし、実際に使用する',
-    right_sections: [{ rights_title: '＜成果物＞', rights: ['運用マニュアル・障害対応記録'] }],
+    left: '利用者の検収後,日々の業務を通して新システムを稼働させ利用するプロセスです。',
+    right_sections: [
+      { 
+        rights_title: '＜運用の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
+        rights: [
+          'システムが正常に動いているか常にチェックし、トラブルを未然に防ぐ活動が中心です。',
+          '1)サービスデスク（ヘルプデスク）',
+          '2)システム監視；サーバー、ネットワーク、CPU使用率やﾒﾓﾘ空き容量などを確認。',
+          '3)ﾊﾞｯｸｱｯﾌﾟ：定期的なデータ複製・保存。',
+          '4)ﾊﾟｯﾁ適用：OSやソフトウェアの脆弱性を修正するため、最新の更新ﾌﾟﾛｸﾞﾗﾑを適用。'
+        ],
+      }
+    ],
     image: '/images/2_process04_1.png'
   },
   {
     id: 5, title: '5.保守', color: '#7a6245',
-    left: '**継続的な改善**\nバグ修正・機能追加・パフォーマンス改善を行う',
-    right_sections: [{ rights_title: '＜成果物＞', rights: ['変更管理記録・テストレポート'] }],
+    left: '稼働中のシステムを修正・改善し、常に最適な状態に保つプロセスです',
+    right_sections: [
+      { 
+        rights_title: '＜保守の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
+        rights: [
+          '不具合への対応だけでなく、環境の変化に合わせたメンテナンスが含まれます。',
+          '1)障害保守（訂正保守も含む）',
+          '　ｼｽﾃﾑにﾊﾞｸﾞ（不具合）が見つかった際に、ﾌﾟﾛｸﾞﾗﾑを修正して正常な状態に戻します。',
+          '2)適応保守：OSのｱｯﾌﾟﾃﾞｰﾄや法改正（消費税率の変更など）に合わせて、ｼｽﾃﾑを書き換えます。',
+          '3)改良保守（完全化保守）',
+          '　「もっと処理を速くしたい」「操作画面を使いやすくしたい」といった要望に応えて機能を強化します。',
+          '4)予防保守',
+          '　将来障害が起きそうな箇所を、トラブルが発生する前にあらかじめ修正します。',
+        ] 
+      }
+    ],
     image: '/images/2_process05_1.png'
   }
 ]
@@ -131,7 +167,7 @@ const getRightSections = (step) => {
 <JinanStepFrame variant="point-bg">
 
   <JinanStep kind="title" title="**ソフトウェア ライフ サイクル プロセス**" />
-  <JinanStep kind="body" title="[red]SLCP[/red] : [en]Software Life Cycle Process[/en]" />
+  <JinanStep kind="body" title="[hl][red]SLCP[/red][/hl] : [en]Software Life Cycle Process[/en]" />
   <JinanStep kind="body" title=" 5{段階|だんかい}の工程（一連の活動）を{逐次|ちくじ}確認していくこととします。" />
 
   <ProcessFlow
@@ -173,104 +209,106 @@ const getRightSections = (step) => {
 ---
 theme: default
 layout: none
----
-
-<div class="page-bg">
-<TwoColumnStep number="01" title="未来を創るシステム開発">
-  <template v-slot:title>
-    <JinanStep kind="title" style="margin: 0;" title="未来を創るシステム開発" />
-  </template>
-
-  <template v-slot:description>
-    <JinanStep kind="body" style="margin: 0;" title="ワクワクする新しい価値を届けるための、3つのステップを確認しましょう。" />
-  </template>
-
-  <template v-slot:left>
-    <div class="relative w-full h-64 flex justify-center items-center">
-      <img src="https://it-words.jp/img/sys-dev.png" class="w-48 opacity-90" />
-      <div v-click="1" class="absolute inset-0 flex justify-center items-center bg-blue-400/20 rounded-full animate-ping h-48 w-48 m-auto"></div>
-      <div v-click="2" class="absolute top-0 right-0 bg-yellow-200 p-4 rounded-xl shadow-lg transform rotate-12">
-        <span class="text-3xl">✨</span>
-      </div>
-    </div>
-    <ul class="mt-8 text-2xl space-y-2 text-gray-600 self-start">
-      <li v-click="1">● 柔軟なコンポーネント設計</li>
-      <li v-click="2">● ユーザー体験の最適化</li>
-    </ul>
-  </template>
-
-  <template v-slot:right>
-    <div class="space-y-6">
-      <div v-click="1" class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-blue-300">
-        <h3 class="text-2xl font-bold text-blue-500 mb-2">Step 01: 基礎の構築</h3>
-        <p class="text-xl text-gray-600">再利用性の高いVueコンポーネントをベースに、堅牢なシステムを組み立てます。</p>
-      </div>
-      <div v-click="2" class="bg-white p-6 rounded-2xl shadow-sm border-l-8 border-yellow-300">
-        <h3 class="text-2xl font-bold text-yellow-600 mb-2">Step 02: 価値の付加</h3>
-        <p class="text-xl text-gray-600">視覚的なエフェクトや心地よい操作感を加え、使う人がワクワクするツールへ昇華させます。</p>
-      </div>
-    </div>
-  </template>
-
-</TwoColumnStep>
-</div>
-
----
-theme: default
-layout: none
-class: text-center
 canvasWidth: 1100
 ---
 
 <div class="page-bg">
 <JinanStepFrame
   variant="point-bg"
-  speech-text="Read in English"
-  speech-link-text="▶ Read in English"
 >
-  <JinanStep kind="title" title="**学習の進め方**" />
-  <JinanStep kind="body" title="[jp]この時間は、基礎を固めながら順番に理解を積み上げていきま。[/jp]" />
-  <JinanStep kind="subtitle" title="**{学校|がっこう}**の**{準備|じゅんび}**" />
+  <JinanStep kind="title" title="小テスト" />
 
-  <JinanStep v-click kind="body" highlight title="0. 公式の意味を言葉で説明できるようにする" />
-  <JinanStep v-click kind="body" highlight title="2. 例題で考え方の手順を確認する" />
-  <JinanStep v-click kind="body" highlight title="3. 練習問題で自力で解く力をつける" />
-  <JinanStep v-click kind="body" highlight title="4. 間違いを見直して次に活かす" />
+  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？" />
+
+  <JinanStep kind="body" title="ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、システム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。" />
+
 </JinanStepFrame>
 </div>
 
 ---
-layout: default
+theme: default
+layout: none
+canvasWidth: 1100
 ---
 
-# 汎用アニメーション（文字入り・図形選択）
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="SLCP講義の総括（ITマネジメントと業界の未来）" />
 
-<script setup>
-// typeに 'circle', 'square', 'triangle', 'arrow' のいずれかを指定します
-const shapeData = [
-  { id: 1, type: 'circle', text: '丸', color: '#ef4444', finalX: -110, startX: -300, startY: -200, startRot: -180 },
-  { id: 2, type: 'square', text: '四角', color: '#3b82f6', finalX: 0, startX: 0, startY: 250, startRot: 0 },
-  { id: 3, type: 'triangle', text: '三角', color: '#eab308', finalX: 110, startX: 300, startY: -200, startRot: 180 }
-]
-</script>
+  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？" />
 
-<div class="flex justify-center mt-10">
-  <ShapesAssemble :clicks="$slidev.nav.clicks" :items="shapeData" />
+  <JinanStep v-click kind="body" title="[jp]ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、システム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]リスクの早期発見： 一気に作ると最後でミスが発覚した際の手戻りが巨大になります。フェーズごとに「承認」を挟むことで、ズレを最小限に抑えます。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]専門性の活用： 企画のプロ、設計のプロ、運用のプロがそれぞれのフェーズで責任を持つことで、品質を高めます。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]捗の見える化： 「今、全体のどこにいるか」を明確にし、不透明なIT開発をコントロール可能にするためです。[/jp]" />
+
+</JinanStepFrame>
 </div>
 
-<span v-click="3"></span>
-
+---
+theme: default
+layout: none
+canvasWidth: 1100
 ---
 
-### アニメーションのポイント
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
 
-1.  **Vueコンポーネント (`.vue`):**
-    -   `<TransitionGroup appear>` で、表示時にアニメーションを実行。
-    -   CSS の `.assemble-enter-from` で、丸・四角・三角の「初期位置（方々）」を指定。
-    -   通常の `.circle`, `.square` 等で「最終位置（重なり）」を指定。
+  <JinanStep kind="subtitle" title="2. 「納期遅延」がもたらす恐ろしい連鎖" />
+  
+  <JinanStep v-click kind="body" title="[jp]試験でも「プロジェクトマネジメント」の重要性が説かれますが、納期が遅れることは単なる「遅刻」では済みません。[/jp]" />
+  
+  <JinanStep v-click kind="body" title="[jp]機会損失： 本来そのシステムで得るはずだった利益がゼロになります（例：キャンペーンに間に合わない）。[/jp]" />
+  
+  <JinanStep kind="body" title="[jp]コストの膨張： 開発メンバーの延べ人数（人月）が増え、プロジェクトが赤字化します。[/jp]" />
 
-2.  **Slidev (`.md`):**
-    -   `<ShapesAssemble v-click />` のように `v-click` を使うのが最も簡単。
-    -   PDF書き出し時など、アニメーションを飛ばして「最終状態」だけ見せたい場合は、Slidevの機能 (`::print-toggle::` など) と組み合わせる工夫が必要になります（今回のコードは画面表示優先のシンプルな実装です）。
+  <JinanStep v-click kind="body" title="[jp]信頼の失墜： IT業界は「信用」で成り立っています。納期遅延は企業としてのブランド価値を著しく下げ、次の契約（保守や次期開発）を失う原因になります。[/jp]" />
+
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  
+  <JinanStep kind="subtitle" title="3. IT業界の現状と今後の動向" />
+
+  <JinanStep kind="body" title="[jp]これから関わるIT業界は、今まさに大きな転換期にあります。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]「作る」から「使いこなす」へ：\nゼロからプログラミングする時代から、SaaS（既存サービス）やローコード・ノーコード、そして生成AIを組み合わせて迅速に価値を作る時代へ移行しています。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]DX（デジタルトランスフォーメーション）の加速：\nITは単なる事務効率化のツールではなく、ビジネスモデルそのものを変える武器になりました。ITパスポートで学ぶ「経営学」と「IT技術」の掛け合わせこそが、今の現場で最も求められている視点です。[/jp]" />
+
+  <JinanStep v-click kind="body" title="[jp]セキュリティとガバナンス：\n便利になる反面、サイバー攻撃のリスクは増大しています。技術者だけでなく、全てのビジネスパーソンに「正しく守る知識」が必須となっています。[/jp]" />
+
+</JinanStepFrame>
+</div>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="subtitle" title="4. 最後に：ITパスポートという「共通言語」" />
+
+  <JinanStep v-click kind="body" title="[jp]この講義で学んだ用語や概念は、IT業界における**「共通言語」**です。[/jp]" />
+  <JinanStep v-click kind="body" title="[jp]エンジニア、営業、経営者が同じ言葉で会話できて初めて、プロジェクトは成功します。試験合格をゴールにするのではなく、この知識を「現場で対話するための武器」として使いこなしていってください。[/jp]" />
+
+</JinanStepFrame>
+</div>
 
 

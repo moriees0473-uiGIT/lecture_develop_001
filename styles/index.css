@@ -55,3 +55,15 @@ body,
   border-radius: 2px;
   flex-shrink: 0;
 }
+
+/* v-clickで挿入されるラッパーによる中央寄せ崩れを防ぐ */
+.slidev-vclick-target {
+  display: block !important;
+  width: 100%;
+  text-align: left;
+}
+
+.slidev-vclick-target > .jinan-step-container--body {
+  width: 100%;
+  text-align: left;
+}
