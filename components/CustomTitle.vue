@@ -1,7 +1,7 @@
 ﻿<template>
   <div class="animation-frame">
     <div class="math-symbols">
-      <div v-for="(s, i) in symbols" :key="i" :class="['symbol', `explode-${i + 1}`]">
+      <div v-for="(s, i) in symbols" :key="i" :class="['symbol', 'monochrome-emoji', `explode-${i + 1}`]">
         {{ s }}
       </div>
     </div>
@@ -14,8 +14,8 @@
       <ul class="theme-points">
         <li v-for="(item, i) in points" :key="i" :class="`point-${i + 1}`">
           <span class="custom-icon"></span>
-          <span class="text">{{ item.title }}</span>
-          <span v-if="item.desc" class="desc" v-html="formatDesc(item.desc)"></span>
+          <span class="text" v-html="format(item.title)" @click="handleInlineClick"></span>
+          <span v-if="item.desc" class="desc" v-html="format(item.desc)" @click="handleInlineClick"></span>
         </li>
       </ul>
     </div>
@@ -24,9 +24,9 @@
 
 <script setup>
 /**
- * @param subtitle - 譛ｬ譌･縺ｮ繝・・繝槭↑縺ｩ縺ｮ蟆剰ｦ句・縺・
- * @param description - 繝ｪ繧ｹ繝医・荳翫・陬懆ｶｳ隱ｬ譏弱ユ繧ｭ繧ｹ繝・
- * @param points - { title: string, desc: string } 縺ｮ驟榊・
+ * @param subtitle - 本日のテーマなどの小見出し
+ * @param description - リスト上の補足説明テキスト
+ * @param points - { title: string, desc: string } の配列
  */
 defineProps({
   subtitle: { type: String, default: '' },
@@ -34,7 +34,9 @@ defineProps({
   points: { type: Array, default: () => [] }
 })
 
-const formatDesc = (value = '') => {
+// JinanStep と共通のテキスト処理（[red][green][hl][en][jp]・太字・ルビ対応）
+const format = (value = '') => {
+  if (!value) return ''
   const escaped = value
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
@@ -45,22 +47,76 @@ const formatDesc = (value = '') => {
   return escaped
     .replace(/\[red\](.+?)\[\/red\]/g, '<span class="desc-red">$1</span>')
     .replace(/\[green\](.+?)\[\/green\]/g, '<span class="desc-green">$1</span>')
+    .replace(/\[(?:orange|orenge)\](.+?)\[\/(?:orange|orenge)\]/g, '<span class="desc-orange">$1</span>')
     .replace(/\[hl\](.+?)\[\/hl\]/g, '<span class="desc-hl">$1</span>')
+    .replace(/\[en\](.+?)\[\/en\]/g, '<button type="button" class="ct-inline-speech" data-lang="en-US" data-text="$1"><strong>$1</strong></button>')
+    .replace(/\[jp\](.+?)\[\/jp\]/g, '<button type="button" class="ct-inline-speech" data-lang="ja-JP" data-text="$1"><strong>$1</strong><span class="ct-speech-icon" aria-hidden="true">🔉</span></button>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\{([^|]+)\|([^}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>')
 }
 
-const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
+// [en]...[/en] / [jp]...[/jp] インライン読み上げ
+const handleInlineClick = (e) => {
+  const rawTarget = e.target
+  const targetEl = rawTarget instanceof Element ? rawTarget : rawTarget?.parentElement
+  const btn = targetEl?.closest('.ct-inline-speech')
+  if (!btn) return
+  e.stopPropagation()
+  window.speechSynthesis.cancel()
+  const utter = new SpeechSynthesisUtterance(btn.dataset.text || btn.textContent || '')
+  utter.lang = btn.dataset.lang === 'ja-JP' ? 'ja-JP' : 'en-US'
+  utter.rate = btn.dataset.lang === 'ja-JP' ? 0.82 : 0.85
+  window.speechSynthesis.speak(utter)
+}
+
+// ===== 文字候補 =====
+// 元：数学記号
+// const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
+
+// 案1：コード・プログラミング系（寂しい感じ）
+// const symbols = ['<', '/', '>', '=', '{', '}', '[', ']']
+
+// 案2：幾何学・テック系
+// const symbols = ['◆', '▶', '◀', '◎', '⬢', '⌘', '✦', '★']
+
+// 案3：シンプル・サークル系
+// const symbols = ['◉', '◎', '⟐', '◈', '★', '✦', '⬟', '▲']
+
+// 案4：デザイン・フロー系
+const symbols = ['→', '←', '↑', '↓', '◆', '⊕', '◎', '✓']
+
+// 案5：ミニマル・シンボル系
+// const symbols = ['⚙', '⚡', '◆', '⊙', '⬢', '▶', '◀', '✦']
+
+// ===== 色付きアイコン（システム開発系）=====
+// 色付き案1：テック・デバイス系
+// const symbols = ['💻', '📱', '⚙️', '🔧', '🚀', '✅', '🔒', '📊']
+
+// 色付き案2：開発フロー系
+//const symbols = ['🎯', '📋', '⚙️', '🚀', '✅', '📊', '🔧', '🌐']
+
+// 色付き案3：システム・ネットワーク系
+// const symbols = ['🖥️', '📡', '🔗', '⚡', '💾', '📱', '🛡️', '📈']
+
+// 色付き案4：プロセス・ワークフロー系
+// const symbols = ['📝', '✏️', '🔍', '💡', '⚙️', '✅', '🚀', '📊']
+
+// 色付き案5：スマート開発・AI系
+//const symbols = ['🤖', '🧠', '🔮', '⚡', '🎯', '🚀', '💎', '🌟']
+
+// 選択したもの（アクティブ）：
+//const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
 </script>
 
 <style scoped>
-/* --- 繝｡繧､繝ｳ繝輔Ξ繝ｼ繝 (繧ｰ繝ｭ繝ｼ繝舌Ν螟画焚蜿ら・) --- */
+/* --- メインフレーム（グローバル変数対応）--- */
 .animation-frame {
   position: relative;
   width: min(980px, 100%);
   height: 400px;
-  margin: 10px auto 0;
+  margin: -8px auto 0;
   border-radius: var(--app-radius, 24px);
-  /* 閭梧勹繧ｰ繝ｩ繝・・繧ｷ繝ｧ繝ｳ繧偵げ繝ｭ繝ｼ繝舌Ν蛟､縺ｧ讒区・ */
+  /* 背景グラデーションをグローバル変数で参照 */
   background: linear-gradient(
     145deg, 
     var(--app-bg-start, #ecfeff) 0%, 
@@ -68,10 +124,10 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
     var(--app-bg-end, #e2e8f0) 100%
   );
   box-shadow: inset 0 2px 10px rgba(0,0,0,0.05), var(--app-shadow, 0 10px 30px rgba(0,0,0,0.1));
-  overflow: visible; /* 險伜捷縺悟､悶↓鬟帙・蜃ｺ縺吶ｈ縺・↓險ｭ螳・*/
+  overflow: visible; /* 記号が外側へ飛び出す演出を許可 */
 }
 
-/* --- 謨ｰ蟄ｦ險伜捷繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ (蜈ｨ菴薙ｒ4s縺ｫ蜉騾・ --- */
+/* --- 記号アニメーション（全体4秒）--- */
 .math-symbols {
   position: absolute;
   top: 50%; left: 50%;
@@ -91,7 +147,12 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
   animation-fill-mode: both !important;
 }
 
-/* 險伜捷縺斐→縺ｮ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ驕・ｻｶ險ｭ螳・*/
+/* 絵文字を白黒に変換 */
+.monochrome-emoji {
+  filter: grayscale(100%) contrast(200%);
+}
+
+/* 記号ごとのアニメーション割り当て */
 .explode-1 { animation-name: explode1; animation-delay: 0.1s; }
 .explode-2 { animation-name: explode2; animation-delay: 0.15s; }
 .explode-3 { animation-name: explode3; animation-delay: 0.2s; }
@@ -101,7 +162,7 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
 .explode-7 { animation-name: explode7; animation-delay: 0.4s; }
 .explode-8 { animation-name: explode8; animation-delay: 0.45s; }
 
-/* 辷・匱繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ霆碁％ (45%蝨ｰ轤ｹ縺ｧ鬟帙・謨｣繧企幕蟋・ */
+/* 放射状アニメーションの定義（45%付近で集まり、その後拡散） */
 @keyframes explode1 { 0% { transform: translate(-50%, -50%) translate(0, -400px) scale(0.2); opacity: 0; } 15%, 45% { transform: translate(-50%, -50%) translate(0, -130px) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(0, -600px) scale(2); opacity: 0; } }
 @keyframes explode2 { 0% { transform: translate(-50%, -50%) translate(400px, -400px) scale(0.2); opacity: 0; } 15%, 45% { transform: translate(-50%, -50%) translate(92px, -92px) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(600px, -600px) scale(2); opacity: 0; } }
 @keyframes explode3 { 0% { transform: translate(-50%, -50%) translate(400px, 0) scale(0.2); opacity: 0; } 15%, 45% { transform: translate(-50%, -50%) translate(130px, 0) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(600px, 0) scale(2); opacity: 0; } }
@@ -111,11 +172,12 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
 @keyframes explode7 { 0% { transform: translate(-50%, -50%) translate(-400px, 0) scale(0.2); opacity: 0; } 15%, 45% { transform: translate(-50%, -50%) translate(-130px, 0) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(-600px, 0) scale(2); opacity: 0; } }
 @keyframes explode8 { 0% { transform: translate(-50%, -50%) translate(-400px, -400px) scale(0.2); opacity: 0; } 15%, 45% { transform: translate(-50%, -50%) translate(-92px, -92px) scale(1); opacity: 1; } 100% { transform: translate(-50%, -50%) translate(-600px, -600px) scale(2); opacity: 0; } }
 
-/* --- 繝・く繧ｹ繝医そ繧ｯ繧ｷ繝ｧ繝ｳ --- */
+/* --- テキストセクション --- */
 .theme-section {
   position: absolute;
-  top: 42%; left: 50%;
-  transform: translate(-50%, -50%);
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
   width: min(840px, 96%);
   display: flex;
   flex-direction: column;
@@ -124,11 +186,13 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
 }
 
 .theme-subtitle {
-  font-size: var(--app-font-size-subtitle, 2.5rem) !important;
+  font-size: var(--app-font-size-title, 2.5rem) !important;
   font-weight: bold !important;
   color: var(--app-title-color, #164e63) !important;
   margin-bottom: 30px !important;
-  /* 險伜捷縺碁｣帙・謨｣繧九ち繧､繝溘Φ繧ｰ(邏・.2s)縺ｧ陦ｨ遉ｺ髢句ｧ・*/
+  position: relative;
+  top: -1em;
+  /* 記号が整った後に見出しを表示（2.2秒遅延） */
   animation: fadeInUp 0.8s ease-out 2.2s both;
 }
 
@@ -139,11 +203,13 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
   animation: fadeInUp 0.8s ease-out 2.4s both;
 }
 
-/* --- 繝ｪ繧ｹ繝医せ繧ｿ繧､繝ｫ --- */
+/* --- リストスタイル --- */
 .theme-points {
   list-style: none !important;
   padding: 0 !important;
   margin: 0 !important;
+  position: relative;
+  top: -1.8em;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -164,13 +230,13 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
   animation: slideInRight 0.6s ease-out both;
 }
 
-/* 繝ｪ繧ｹ繝医・繧ｹ繝ｩ繧､繝峨う繝ｳ驕・ｻｶ */
+/* リストのスライドイン遅延 */
 .point-1 { animation-delay: 2.6s !important; }
 .point-2 { animation-delay: 2.8s !important; }
 .point-3 { animation-delay: 3.0s !important; }
-.point-4 { animation-delay: 3.2s !important; } /* 4陦檎岼莉･髯阪ｂ蟇ｾ蠢懷庄閭ｽ */
+.point-4 { animation-delay: 3.2s !important; } /* 4項目目があっても対応可能 */
 
-/* --- 繧｢繧､繧ｳ繝ｳ (繧ｷ繝ｳ繝励Ν縺ｪ譫) --- */
+/* --- アイコン（シンプルな枠）--- */
 .custom-icon {
   width: 20px; height: 20px;
   border: 2px solid var(--app-accent, #06b6d4);
@@ -193,6 +259,12 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
   color: #2f855a;
 }
 
+.desc-orange {
+  color: #c2410c;
+  font-weight: 800;
+  text-shadow: 0 1px 0 rgba(90, 90, 90, 0.28);
+}
+
 .desc-hl {
   background: #fef3c7;
   border: 1px solid #fde68a;
@@ -201,7 +273,34 @@ const symbols = ['∫', '∞', '∑', 'Δ', '√', '∇', 'π', 'θ']
   color: #5b4630;
 }
 
-/* --- 繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ螳夂ｾｩ --- */
+/* [en]...[/en] / [jp]...[/jp] インライン読み上げボタン */
+:deep(.ct-inline-speech) {
+  background: none;
+  border: none;
+  padding: 0 1px;
+  cursor: pointer;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+:deep(.ct-inline-speech:hover) {
+  opacity: 0.7;
+}
+
+:deep(.ct-speech-icon) {
+  margin-left: 0.2em;
+  font-size: 0.9em;
+}
+
+/* ルビの調整 */
+:deep(rt) {
+  font-size: 0.55em;
+  color: #000000;
+  font-weight: 700;
+}
+
+/* --- アニメーション補助 --- */
 @keyframes fadeInUp {
   0% { transform: translateY(20px); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }

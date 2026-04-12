@@ -13,7 +13,7 @@ const props = withDefaults(
 </script>
 
 <template>
-  <h2 class="inline-title">
+  <h2 class="inline-title" :style="{ fontSize: 'var(--app-font-size-title, 2.0rem)' }">
     <span class="main">{{ props.title }}</span>
     <span v-if="props.suffix" class="suffix" :style="{ fontSize: `${props.suffixScale}em` }">
       {{ props.suffix }}
@@ -26,7 +26,7 @@ const props = withDefaults(
   margin: 0;
   line-height: 1.1;
   letter-spacing: 0.02em;
-  font-size: var(--app-font-size-title, 2.5rem);
+  transform: translateY(-1em);
 }
 
 .main {

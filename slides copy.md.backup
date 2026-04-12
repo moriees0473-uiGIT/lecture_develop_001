@@ -1,4 +1,26 @@
 ---
+theme: default
+---
+
+# グラフのデモ
+
+既存の Vue-ChartJS を使った例です。
+
+<SlidevChart 
+  label="2026年度 売上" 
+  :chartData="[65, 59, 80, 81, 56]" 
+/>
+
+# 別のデータで再利用
+
+同じコンポーネントで値を書き換えるだけです。
+
+<SlidevChart 
+  label="ユーザー数" 
+  :chartData="[10, 25, 45, 30, 70]" 
+/>
+
+---
 theme: seriph
 class: text-center
 ---

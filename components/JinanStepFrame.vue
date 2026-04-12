@@ -1,14 +1,34 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
   variant?: 'beige' | 'white' | 'point-bg'
+  speechText?: string       // 読み上げる英語テキスト
+  speechLinkText?: string   // リンクの表示ラベル
+  speechRate?: number       // 読み上げ速度（デフォルト 0.9）
 }>(), {
-  variant: 'beige'
+  variant: 'beige',
+  speechText: '',
+  speechLinkText: '▶ Read in English',
+  speechRate: 0.9
 })
+
+function speak() {
+  if (!props.speechText) return
+  window.speechSynthesis.cancel()
+  const utter = new SpeechSynthesisUtterance(props.speechText)
+  utter.lang = 'en-US'
+  utter.rate = props.speechRate
+  window.speechSynthesis.speak(utter)
+}
 </script>
 
 <template>
   <div :class="['jinan-step-frame', `jinan-step-frame--${props.variant}`]">
     <slot />
+    <div v-if="props.speechText" class="speech-link-wrap">
+      <button class="speech-link" @click="speak">
+        {{ props.speechLinkText }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -39,5 +59,21 @@ const props = withDefaults(defineProps<{
 .jinan-step-frame--point-bg {
   background: transparent;
   box-shadow: none;
+}
+
+.speech-link-wrap {
+  margin-top: 14px;
+  text-align: right;
+}
+
+.speech-link {
+  font-size: 0.95rem;
+  color: var(--app-title-color, #5b4630);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.speech-link:hover {
+  opacity: 0.85;
 }
 </style>
