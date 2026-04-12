@@ -19,12 +19,12 @@ canvasWidth: 1100
   subtitle='本日のテーマ'
   :points="[
     { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** : [en]Software Life Cycle Process[/en])' },
-    { title: '2. 小テスト' },
-    { title: '3. {総括|そうかつ}' }
+    { title: '2. {総括|そうかつ}' }
   ]"
 />
 
 ---
+routeAlias: process-page
 theme: default
 layout: none
 class: text-center
@@ -47,10 +47,10 @@ const slcpSteps = [
         ]
       },
       {
-        rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ））＞',
+        rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
           '・システム化の基本方針を策定する。',
-          '・管理体制や開発スケジュール,概算コスト,[orange]費用対効果[/orange]([hl]ROI[/hl] : [en]Return on Investment[/en])などを検討する。'
+          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]費用対効果[/orange]([hl]ROI[/hl] : Return on Investment)などを検討する。'
         ]
       }
     ],
@@ -63,19 +63,19 @@ const slcpSteps = [
       {
         rights_title: '＜業務要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
-          '・日々の業務に必要な要件。業務手順,関係する[orange]組織の責任や権限[/orange]などを明確にする。'
+          '日々の業務に必要な要件→業務手順,関係する[orange]組織の責任や権限[/orange]などを明確にする。'
         ]
       },
       {
         rights_title: '＜機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
-          '・システムに必要な機能。必要なデータ項目,処理内容,ユーザインタ要件フェースなどを明確にする。'
+          'システムに必要な機能→必要なデータ項目,処理内容,ユーザインタ要件フェースなどを明確にする。'
         ]
       },
       {
         rights_title: '＜非機能要件定義（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
-          '・システムに必要な[orange]目に見えない性能[/orange]。応答時間,稼働時間,セキュリティなどを明確にする。'
+          'システムに必要な[orange]目に見えない性能[/orange]→応答時間,稼働時間,セキュリティなどを明確にする。'
         ]
       }
     ],
@@ -83,7 +83,7 @@ const slcpSteps = [
   },
   {
     id: 3, title: '3.開発', color: '#D2B48C', textColor: '#302316',
-    left: '開発者が利用者の要件を取り入れながら,実際にシステムを開発するプロセスです。',
+    left: '開発者が利用者の要件を取り入れながら,実際にシステムを[orange]開発[/orange]するプロセスです。',
     right_sections: [
       {
         rights_title: '＜開発工程順序（ﾍﾞﾝﾀﾞｰと利用者）＞',
@@ -101,14 +101,14 @@ const slcpSteps = [
   },
   {
     id: 4, title: '4.運用', color: '#A0845C',
-    left: '利用者の検収後,日々の業務を通して新システムを稼働させ利用するプロセスです。',
+    left: '利用者の検収後,日々の業務を通して新システムを稼働させ[orange]利用[/orange]するプロセスです。',
     right_sections: [
       { 
         rights_title: '＜運用の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
         rights: [
           'システムが正常に動いているか常にチェックし、トラブルを未然に防ぐ活動が中心です。',
           '1)サービスデスク（ヘルプデスク）',
-          '2)システム監視；サーバー、ネットワーク、CPU使用率やﾒﾓﾘ空き容量などを確認。',
+          '2)システム監視：サーバー、ネットワーク、CPU使用率やﾒﾓﾘ空き容量などを確認。',
           '3)ﾊﾞｯｸｱｯﾌﾟ：定期的なデータ複製・保存。',
           '4)ﾊﾟｯﾁ適用：OSやソフトウェアの脆弱性を修正するため、最新の更新ﾌﾟﾛｸﾞﾗﾑを適用。'
         ],
@@ -118,19 +118,16 @@ const slcpSteps = [
   },
   {
     id: 5, title: '5.保守', color: '#7a6245',
-    left: '稼働中のシステムを修正・改善し、常に最適な状態に保つプロセスです',
+    left: '稼働中のシステムを修正・改善し、常に[orange]最適な状態に保つ[/orange]プロセスです',
     right_sections: [
       { 
         rights_title: '＜保守の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）＞', 
         rights: [
-          '不具合への対応だけでなく、環境の変化に合わせたメンテナンスが含まれます。',
+          '不具合への対応だけでなく、環境の変化に合わせたメンテナンスも含みます。',
           '1)障害保守（訂正保守も含む）',
-          '　ｼｽﾃﾑにﾊﾞｸﾞ（不具合）が見つかった際に、ﾌﾟﾛｸﾞﾗﾑを修正して正常な状態に戻します。',
-          '2)適応保守：OSのｱｯﾌﾟﾃﾞｰﾄや法改正（消費税率の変更など）に合わせて、ｼｽﾃﾑを書き換えます。',
+          '2)適応保守',
           '3)改良保守（完全化保守）',
-          '　「もっと処理を速くしたい」「操作画面を使いやすくしたい」といった要望に応えて機能を強化します。',
           '4)予防保守',
-          '　将来障害が起きそうな箇所を、トラブルが発生する前にあらかじめ修正します。',
         ] 
       }
     ],
@@ -139,6 +136,16 @@ const slcpSteps = [
 ]
 
 const currentStep = computed(() => Math.min($slidev.nav.clicks, slcpSteps.length - 1))
+const currentSupplement = computed(() => {
+  const step = slcpSteps[currentStep.value]
+  if (!step?.id) return null
+
+  return {
+    pageName: `process${step.id}-hosoku-page`,
+    buttonLabel: `${step.title}の補足へ`
+  }
+})
+
 const getRightSections = (step) => {
   if (Array.isArray(step.right_sections) && step.right_sections.length > 0) {
     return step.right_sections
@@ -165,10 +172,18 @@ const getRightSections = (step) => {
 
 <div class="page-bg">
 <JinanStepFrame variant="point-bg">
+  <template #header-actions>
+    <button
+      v-if="currentSupplement"
+      class="slcp-supplement-link"
+      @click="$slidev.nav.go(currentSupplement.pageName, currentStep)"
+    >
+      {{ currentSupplement.buttonLabel }}
+    </button>
+  </template>
 
-  <JinanStep kind="title" title="**ソフトウェア ライフ サイクル プロセス**" />
-  <JinanStep kind="body" title="[hl][red]SLCP[/red][/hl] : [en]Software Life Cycle Process[/en]" />
-  <JinanStep kind="body" title=" 5{段階|だんかい}の工程（一連の活動）を{逐次|ちくじ}確認していくこととします。" />
+  <JinanStep kind="title" title="ソフトウェア ライフ サイクル プロセス" />
+  <JinanStep kind="title" title="** [hl][red]SLCP[/red][/hl] : Software Life Cycle Process**" />
 
   <ProcessFlow
     :current-index="currentStep"
@@ -206,24 +221,30 @@ const getRightSections = (step) => {
 </div>
 <span v-click="4"></span>
 
----
-theme: default
-layout: none
-canvasWidth: 1100
----
+<style>
+.slcp-supplement-link {
+  appearance: none;
+  border: 1px solid rgba(91, 70, 48, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--app-title-color, #5b4630);
+  padding: 0.55rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(91, 70, 48, 0.12);
+  backdrop-filter: blur(6px);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
 
-<div class="page-bg">
-<JinanStepFrame
-  variant="point-bg"
->
-  <JinanStep kind="title" title="小テスト" />
+.slcp-supplement-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(91, 70, 48, 0.18);
+}
 
-  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？" />
-
-  <JinanStep kind="body" title="ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、システム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。" />
-
-</JinanStepFrame>
-</div>
+.slcp-supplement-link:active {
+  transform: translateY(0);
+}
+</style>
 
 ---
 theme: default
@@ -311,4 +332,94 @@ canvasWidth: 1100
 </JinanStepFrame>
 </div>
 
+---
+routeAlias: process1-hosoku-page
+class: supplement-page
+---
 
+# 補足（企画）
+
+<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 0)">
+  back
+</button>
+
+---
+routeAlias: process2-hosoku-page
+class: supplement-page
+---
+
+# 補足（要件定義）
+
+<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 1)">
+  back
+</button>
+
+---
+routeAlias: process3-hosoku-page
+class: supplement-page
+---
+
+# 補足（開発）
+
+<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 2)">
+  back
+</button>
+
+---
+routeAlias: process4-hosoku-page
+class: supplement-page
+---
+
+# 補足（運用）
+
+<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 3)">
+  back
+</button>
+
+---
+routeAlias: process5-hosoku-page
+class: supplement-page
+---
+
+# 補足　保守の主な作業（利用者、ﾍﾞﾝﾀﾞｰ）（保守）
+
+  <JinanStep kind="subtitle" title="1)障害保守（訂正保守も含む）" />
+  <JinanStep kind="body" title="ｼｽﾃﾑにﾊﾞｸﾞ（不具合）が見つかった際に、ﾌﾟﾛｸﾞﾗﾑを修正して正常な状態に戻します。" />
+
+  <JinanStep kind="subtitle" title="2)適応保守" />
+  <JinanStep kind="body" title="OSのｱｯﾌﾟﾃﾞｰﾄや法改正（消費税率の変更など）に合わせて、ｼｽﾃﾑを書き換えます。" />
+
+  <JinanStep kind="subtitle" title="3)改良保守（完全化保守）" />
+  <JinanStep kind="body" title="「もっと処理を速くしたい」「操作画面を使いやすくしたい」といった要望に応えて機能を強化します。" />
+
+  <JinanStep kind="subtitle" title="4)予防保守" />
+  <JinanStep kind="body" title="将来障害が起きそうな箇所を、トラブルが発生する前にあらかじめ修正します。" />
+
+<button class="supplement-back-button" @click="$slidev.nav.go('process-page', 4)">
+  back
+</button>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="小テスト" />
+
+  <JinanStep kind="subtitle" title="システム要件定義で明確にするもののうち,性能に関する要件はどれか。" />
+
+  <JinanStep kind="body" title="ア 業務要件を実現するシステムの機能\n" />
+  <JinanStep kind="body" title="イ システムの稼働率\n" />
+  <JinanStep kind="body" title="ウ 照会機能の応答時間\n" />
+  <JinanStep kind="body" title="工 障害の復旧時間\n" />
+
+  <JinanStep v-click kind="body" title="【正解】ウ" />
+  <JinanStep v-click kind="body" title="【根拠】消去法でウとなる" />
+
+</JinanStepFrame>
+</div>

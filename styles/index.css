@@ -67,3 +67,28 @@ body,
   width: 100%;
   text-align: left;
 }
+
+.slidev-page.supplement-page h1,
+.slidev-layout.supplement-page h1,
+.supplement-page h1 {
+  color: #2f3a4a !important;
+  text-shadow: none;
+}
+
+.slidev-page.supplement-page,
+.slidev-layout.supplement-page {
+  background: #ececec !important;
+}
+
+.supplement-page .page-bg {
+  background: #ececec !important;
+}
+
+.supplement-page .supplement-back-button {
+  color: #2f3a4a !important;
+  border: 1px solid #a9b3c1;
+  background: #f8fafc;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-weight: 700;
+}

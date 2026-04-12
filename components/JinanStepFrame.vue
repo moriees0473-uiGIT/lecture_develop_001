@@ -23,6 +23,9 @@ function speak() {
 
 <template>
   <div :class="['jinan-step-frame', `jinan-step-frame--${props.variant}`]">
+    <div v-if="$slots['header-actions']" class="frame-header-actions">
+      <slot name="header-actions" />
+    </div>
     <slot />
     <div v-if="props.speechText" class="speech-link-wrap">
       <button class="speech-link" @click="speak">
@@ -34,11 +37,19 @@ function speak() {
 
 <style scoped>
 .jinan-step-frame {
+  position: relative;
   width: min(980px, 100%);
   margin: 0px auto 0;
   padding: 32px 44px;
   border-radius: var(--app-radius, 24px);
   text-align: left;
+}
+
+.frame-header-actions {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 5;
 }
 
 .jinan-step-frame--beige {
