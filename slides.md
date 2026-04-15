@@ -18,8 +18,9 @@ canvasWidth: 1100
 <CustomTitle
   subtitle='本日のテーマ'
   :points="[
-    { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** : [en]Software Life Cycle Process[/en])' },
-    { title: '2. {総括|そうかつ}' }
+    { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** :Software Life Cycle Process)' },
+    { title: '2. IPパスポート過去問題(令和3年 問46)' },
+    { title: '3. {総括|そうかつ}' }
   ]"
 />
 
@@ -50,7 +51,7 @@ const slcpSteps = [
         rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
           '・システム化の基本方針を策定する。',
-          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]費用対効果[/orange]([hl]ROI[/hl] : Return on Investment)などを検討する。'
+          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]{費用対効果|ひようたいこうか}[/orange]([hl]ROI[/hl] : [en]Return on Investment[/en])などを検討する。'
         ]
       }
     ],
@@ -183,7 +184,7 @@ const getRightSections = (step) => {
   </template>
 
   <JinanStep kind="title" title="ソフトウェア ライフ サイクル プロセス" />
-  <JinanStep kind="title" title="** [hl][red]SLCP[/red][/hl] : Software Life Cycle Process**" />
+  <JinanStep kind="title" title="** [hl][red]SLCP[/red][/hl] : [en]Software Life Cycle Process[/en]**" />
 
   <ProcessFlow
     :current-index="currentStep"
@@ -245,6 +246,34 @@ const getRightSections = (step) => {
   transform: translateY(0);
 }
 </style>
+
+---
+theme: default
+layout: none
+canvasWidth: 1100
+---
+
+<div class="page-bg">
+<JinanStepFrame
+  variant="point-bg"
+>
+  <JinanStep kind="title" title="IPパスポート過去問題(令和3年 問46)" />
+
+  <JinanStep kind="subtitle" title="システム要件定義で明確にするもののうち,性能に関する要件はどれか。" />
+
+  <JinanStep kind="body" title="ア 業務要件を実現するシステムの機能\n" />
+  <JinanStep kind="body" title="イ システムの稼働率\n" />
+  <JinanStep kind="body" title="ウ 照会機能の応答時間\n" />
+  <JinanStep kind="body" title="工 障害の復旧時間\n" />
+
+  <JinanStep v-click kind="body" title="【正解】ウ" />
+  <JinanStep v-click kind="body" title="【根拠】ア；業務要件で定義された機能は、システム要件定義ではないため、不正解である" />
+  <JinanStep v-click kind="body" title="【根拠】イ；稼働率は非機能要件で定義され、システムの可用性の要件であるため、不正解である。" />
+  <JinanStep v-click kind="body" title="【根拠】ウ；応答時間は非機能要件定義でされ、システムの性能に関する要件であるため、正解である。" />
+  <JinanStep v-click kind="body" title="【根拠】エ；障碍時の復旧時間は日機能要件で定義され、システムの可用性または信頼性であるため、不正解である。" />
+  
+</JinanStepFrame>
+</div>
 
 ---
 theme: default
@@ -399,27 +428,4 @@ class: supplement-page
   back
 </button>
 
----
-theme: default
-layout: none
-canvasWidth: 1100
----
 
-<div class="page-bg">
-<JinanStepFrame
-  variant="point-bg"
->
-  <JinanStep kind="title" title="小テスト" />
-
-  <JinanStep kind="subtitle" title="システム要件定義で明確にするもののうち,性能に関する要件はどれか。" />
-
-  <JinanStep kind="body" title="ア 業務要件を実現するシステムの機能\n" />
-  <JinanStep kind="body" title="イ システムの稼働率\n" />
-  <JinanStep kind="body" title="ウ 照会機能の応答時間\n" />
-  <JinanStep kind="body" title="工 障害の復旧時間\n" />
-
-  <JinanStep v-click kind="body" title="【正解】ウ" />
-  <JinanStep v-click kind="body" title="【根拠】消去法でウとなる" />
-
-</JinanStepFrame>
-</div>
