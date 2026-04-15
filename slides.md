@@ -51,7 +51,7 @@ const slcpSteps = [
         rights_title: '＜システム化計画（利用者：候補ﾍﾞﾝﾀﾞｰ）＞',
         rights: [
           '・システム化の基本方針を策定する。',
-          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]{費用対効果|ひようたいこうか}[/orange]([hl]ROI[/hl] : [en]Return on Investment[/en])などを検討する。'
+          '・管理体制や開発スケジュール,{概算|がいさん}コスト,[orange]{費用対効果|ひようたいこうか}[/orange]([hl]ROI[/hl] : Return on Investment)などを検討する。'
         ]
       }
     ],
@@ -266,11 +266,11 @@ canvasWidth: 1100
   <JinanStep kind="body" title="ウ 照会機能の応答時間\n" />
   <JinanStep kind="body" title="工 障害の復旧時間\n" />
 
-  <JinanStep v-click kind="body" title="【正解】ウ" />
-  <JinanStep v-click kind="body" title="【根拠】ア；業務要件で定義された機能は、システム要件定義ではないため、不正解である" />
-  <JinanStep v-click kind="body" title="【根拠】イ；稼働率は非機能要件で定義され、システムの可用性の要件であるため、不正解である。" />
-  <JinanStep v-click kind="body" title="【根拠】ウ；応答時間は非機能要件定義でされ、システムの性能に関する要件であるため、正解である。" />
-  <JinanStep v-click kind="body" title="【根拠】エ；障碍時の復旧時間は日機能要件で定義され、システムの可用性または信頼性であるため、不正解である。" />
+  <JinanStep v-click kind="body" title="【正解】ウ\n" />
+  <JinanStep v-click kind="body" title="【根拠】ア：業務要件で定義された機能は、システム要件の機能ではないため" />
+  <JinanStep v-click kind="body" title="【根拠】イ：稼働率は非機能要件で定義され、システム可用性の要件であるため" />
+  <JinanStep v-click kind="body" title="【根拠】ウ：正解" />
+  <JinanStep v-click kind="body" title="【根拠】エ：障碍時の復旧時間は機能要件で定義され、システム可用性または信頼性であるため" />
   
 </JinanStepFrame>
 </div>
@@ -287,12 +287,12 @@ canvasWidth: 1100
 >
   <JinanStep kind="title" title="SLCP講義の総括（ITマネジメントと業界の未来）" />
 
-  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？" />
+  <JinanStep kind="subtitle" title="1. なぜ「プロセス分け」が必要なのか？\n" />
 
-  <JinanStep v-click kind="body" title="[jp]ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、システム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]リスクの早期発見： 一気に作ると最後でミスが発覚した際の手戻りが巨大になります。フェーズごとに「承認」を挟むことで、ズレを最小限に抑えます。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]専門性の活用： 企画のプロ、設計のプロ、運用のプロがそれぞれのフェーズで責任を持つことで、品質を高めます。[/jp]" />
-  <JinanStep v-click kind="body" title="[jp]捗の見える化： 「今、全体のどこにいるか」を明確にし、不透明なIT開発をコントロール可能にするためです。[/jp]" />
+  <JinanStep v-click kind="body" title="ITパスポートの「ストラテジ系」「マネジメント系」で学んだ通り、\nシステム開発を企画・要件定義・開発・運用と分けるのには明確な理由があります。" />
+  <JinanStep v-click kind="body" title="**[green]リスクの早期発見：[/green]**\n 一気に作ると最後でミスが発覚した際の手戻りが巨大になります。フェーズごとに「承認」を挟むことで、ズレを最小限に抑えます。" />
+  <JinanStep v-click kind="body" title="**[green]専門性の活用： [/green]**\n企画のプロ、設計のプロ、運用のプロがそれぞれのフェーズで責任を持つことで、品質を高めます。" />
+  <JinanStep v-click kind="body" title="**[green]進捗の見える化：[/green]** \n「今、全体のどこにいるか」を明確にし、不透明なIT開発をコントロール可能にするためです。" />
 
 </JinanStepFrame>
 </div>

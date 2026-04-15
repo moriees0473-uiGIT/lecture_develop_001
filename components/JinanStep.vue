@@ -88,8 +88,8 @@ const format = (text: string) => {
     .replace(/\[green\](.+?)\[\/green\]/g, '<span class="step-green">$1</span>')
     .replace(/\[(?:orange|orenge)\](.+?)\[\/(?:orange|orenge)\]/g, '<span class="step-orange">$1</span>')
     .replace(/\[hl\](.+?)\[\/hl\]/g, '<span class="step-hl">$1</span>')
-    .replace(/\[en\](.+?)\[\/en\]/g, '<button type="button" class="step-inline-speech" data-lang="en-US" data-text="$1"><strong>$1</strong></button>')
-    .replace(/\[jp\](.+?)\[\/jp\]/g, '<button type="button" class="step-inline-speech" data-lang="ja-JP" data-text="$1"><strong>$1</strong><span class="step-speech-icon" aria-hidden="true">🔉</span></button>')
+    .replace(/\[en\](.+?)\[\/en\]/g, '<button type="button" class="step-inline-speech step-inline-speech--en" data-lang="en-US" data-text="$1"><strong>$1</strong></button>')
+    .replace(/\[jp\](.+?)\[\/jp\]/g, '<button type="button" class="step-inline-speech step-inline-speech--jp" data-lang="ja-JP" data-text="$1"><strong>$1</strong><span class="step-speech-icon" aria-hidden="true">🔉</span></button>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\{([^|]+)\|([^}]+)\}/g, '<ruby>$1<rt>$2</rt></ruby>')
 }
@@ -168,13 +168,17 @@ const handleInlineClick = (e: MouseEvent) => {
 
 .step-title--body {
   font-size: var(--app-font-size-body, 1.6rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.45;
   color: var(--app-text-sub, #6f5c45);
   margin-left: 1em;
   display: block;
   width: 100%;
   text-align: left;
+}
+
+:deep(.step-title--body strong) {
+  font-weight: 900;
 }
 
 :deep(.step-red) {
@@ -199,12 +203,6 @@ const handleInlineClick = (e: MouseEvent) => {
   color: #5b4630;
 }
 
-:deep(.step-inline-speech) {
-  display: block;
-  text-align: left;
-  width: 100%;
-}
-
 /* ルビの調整 */
 :deep(rt) {
   font-size: 0.55em;
@@ -222,6 +220,20 @@ const handleInlineClick = (e: MouseEvent) => {
   font-size: inherit;
   font-family: inherit;
   font-weight: inherit;
+}
+
+:deep(.step-inline-speech--en) {
+  display: inline-block;
+  white-space: nowrap;
+  min-width: fit-content;
+  text-align: left;
+}
+
+:deep(.step-inline-speech--jp) {
+  display: block;
+  width: 100%;
+  white-space: normal;
+  text-align: left;
 }
 
 :deep(.step-inline-speech:hover) {
