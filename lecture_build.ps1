@@ -16,3 +16,5 @@ Remove-Item -Recurse -Force slides\dist -ErrorAction SilentlyContinue
 
 # ビルド＆ローカルサーバー起動 (http://localhost:3030/main/ と /math03/)
 npm run serve
+
+# npm ci --include=optional && npm run build:render
