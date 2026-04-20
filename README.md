@@ -6,15 +6,15 @@ To start the slide show:
 - `pnpm dev`
 - visit <http://localhost:3030>
 
-Edit the [slides.md](./slides.md) to see the changes.
+Edit the [slides/slides.md](./slides/slides.md) to see the changes.
 
 Learn more about Slidev at the [documentation](https://sli.dev/).
 
 ## PDF export memo (for保存用)
 
 - 初回のみ必要: `npm i -D playwright-chromium`
-- PDF出力コマンド: `npx slidev export --with-clicks`
-- 補足: PDF出力のために `slides.md` を毎回編集する必要はありません。
+- PDF出力コマンド: `npx slidev export slides.md --with-clicks`
+- 補足: PDF出力のために `slides/slides.md` を毎回編集する必要はありません。
 
 ###
 1. テクノロジ系：基礎理論とアルゴリズム
