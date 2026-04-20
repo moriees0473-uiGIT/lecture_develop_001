@@ -1,5 +1,5 @@
 services:
-  - type: web
+  - type: site
     name: lecture-develop-001
     env: static
     buildCommand: npm run build:render
