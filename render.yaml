@@ -1,5 +1,6 @@
-staticSites:
-  - name: lecture-develop-001
+services:
+  - type: static          # ここを static にします
+    name: lecture-develop-001
     buildCommand: npm install && npm run build:render
     staticPublishPath: dist
     routes:
