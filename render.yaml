@@ -1,13 +1,13 @@
 services:
-  - type: site
+  - type: static
     name: lecture-develop-001
-    env: static
-    buildCommand: npm run build:render
+    # env: static は不要なので削除してOK
+    buildCommand: npm install && npm run build:render
     staticPublishPath: dist
     routes:
       - type: rewrite
-        source: /main
+        source: /main/*
         destination: /main/index.html
       - type: rewrite
-        source: /math03
+        source: /math03/*
         destination: /math03/index.html
