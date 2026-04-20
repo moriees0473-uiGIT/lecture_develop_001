@@ -1,7 +1,5 @@
-services:
-  - type: static
-    name: lecture-develop-001
-    # env: static は不要なので削除してOK
+staticSites:
+  - name: lecture-develop-001
     buildCommand: npm install && npm run build:render
     staticPublishPath: dist
     routes:
