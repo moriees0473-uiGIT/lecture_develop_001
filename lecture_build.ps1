@@ -12,9 +12,7 @@
 # http://localhost:3030/
 
 Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
-# Start-Sleep -Seconds 1
-# npx slidev --port 3030 --open
-# npx @slidev/cli --port 3030
+Remove-Item -Recurse -Force slides\dist -ErrorAction SilentlyContinue
 
-#VS CODE RUN
-npx slidev
+# ビルド＆ローカルサーバー起動 (http://localhost:3030/main/ と /math03/)
+npm run serve
