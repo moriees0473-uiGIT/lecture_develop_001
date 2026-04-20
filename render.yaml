@@ -6,8 +6,14 @@ services:
     staticPublishPath: dist
     routes:
       - type: rewrite
+        source: /main
+        destination: /main/index.html
+      - type: rewrite
         source: /main/*
         destination: /main/index.html
+      - type: rewrite
+        source: /math03
+        destination: /math03/index.html
       - type: rewrite
         source: /math03/*
         destination: /math03/index.html
