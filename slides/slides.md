@@ -20,7 +20,7 @@ canvasWidth: 1100
   :points="[
     { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** :Software Life Cycle Process)' },
     { title: '2. IPパスポート過去問題(令和3年 問46)' },
-    { title: '3. {総括|そうかつ}' }
+    { title: '3. {総括2|そうかつ}' }
   ]"
 />
 
