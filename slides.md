@@ -12,15 +12,15 @@ duration: 35min
 canvasWidth: 1100
 ---
 
-<InlineSmallTitle title="第2回 システム開発の流れ（全体）" suffix="マネジメント系"
-  :suffix-scale="0.58" />
+<InlineSmallTitle title="システム開発（開発プロセスの流れ）" suffix="第2回 システム開発"  :suffix-scale="0.58" />
 
 <CustomTitle
   subtitle='本日のテーマ'
   :points="[
-    { title: '1. ソフトウェア ライフ サイクル プロセス', desc: '(**[red]SLCP[/red]** :Software Life Cycle Process)' },
-    { title: '2. IPパスポート過去問題(令和3年 問46)' },
-    { title: '3. {総括|そうかつ}' }
+    { title: '1. ソフトウェア ライフ サイクル プロセス', desc: 'SLCP : Software Life Cycle Proces' },
+    { title: '2. 小テスト IPパスポート過去問題(令和3年 問46)' },
+    { title: '3. SLCP講義の総括（ITマネジメントと業界の未来）' },
+    { title: '4. 「納期遅延」がもたらす恐ろしい連鎖' }
   ]"
 />
 
